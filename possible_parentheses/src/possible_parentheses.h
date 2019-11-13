@@ -42,26 +42,26 @@ void possibleParenthesis(int n, std::list<std::string> & result)
     }
 }
 
+// Function that returns a bool if given subanswer is truly balanced.
 bool paraBalanced(std::string subResult)
 {
-    std::stack<char> s;
-    char ch;
+    std::stack<char> s; // Creates stack.
     for(int i = 0; i < subResult.length(); i++)
     {
         if(subResult[i] == '{')
         {
-            s.push(subResult[i]);
+            s.push(subResult[i]); // Stack will be pushed when left bracket is present.
         }
 
         if(s.empty())
         {
-            return false;
+            return false; // if Stack is empty at this point, return false.
         }
 
-        if(subResult[i] == '{')
+        if(subResult[i] == '}')
         {
-
+            s.pop(); // Stack will be popped when right bracket is present.
         }
     }
-
+    return(s.empty()); // If String is truly balanced, then the amount of pushes and pops should be the same. Stack should be empty.
 }
