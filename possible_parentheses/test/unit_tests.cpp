@@ -7,6 +7,24 @@ void showResult(std::list<std::string> & result) {
     }
 };
 
+TEST(test_recursive, 0) {
+    std::list<std::string> result;
+    possibleParenthesis(0, result);
+    int balanceCount = 0;
+    for(auto const &i: result)
+    {
+        std::string subResult = i;
+        if(paraBalanced(subResult)) // Comparing each string if they are balanced. If so, increment balanceCount.
+        {
+            balanceCount++;
+        }
+    }
+    ASSERT_TRUE(balanceCount == 0); // Will return true if the # of balanced Strings are equal to possible parentheses combos.
+
+    // homework: add verification
+
+}
+
 TEST(test_recursive, 1) {
     std::list<std::string> result;
     possibleParenthesis(1, result);

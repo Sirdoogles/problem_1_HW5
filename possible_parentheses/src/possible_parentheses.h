@@ -3,7 +3,7 @@
 // n: size of the problem
 // result: a list of string, each string represents a case of valid parentheses of size n
 
-void _possibleParenthesis(int pos, int n, int open, int close, std::list<std::string> & result)
+void _possibleParenthesis(int n, int open, int close, std::list<std::string> & result)
 {
 
     static std::string subResult; // String to store subanswers for each bracket combo. Part of Backtracking.
@@ -16,13 +16,13 @@ void _possibleParenthesis(int pos, int n, int open, int close, std::list<std::st
 
     if(open > close) {
         subResult.push_back('}'); // Append character to tempString.
-        _possibleParenthesis(pos+1, n, open, close+1, result);
+        _possibleParenthesis(n, open, close+1, result);
         subResult.pop_back(); // After recursive call is complete. remove added character before function call.
     }
 
     if(open < n) {
         subResult.push_back('{'); // Same deal here.
-        _possibleParenthesis(pos+1, n, open+1, close, result);
+        _possibleParenthesis(n, open+1, close, result);
         subResult.pop_back();
     }
 
@@ -32,7 +32,7 @@ void possibleParenthesis(int n, std::list<std::string> & result)
 {
     // homework
     if(n > 0) {
-        _possibleParenthesis(0, n, 0, 0, result);
+        _possibleParenthesis(n, 0, 0, result);
     }
 
     // Print strings.
